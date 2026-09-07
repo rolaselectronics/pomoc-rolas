@@ -34,4 +34,4 @@ jobs:
             Pomoc-Rolas-1.1.1.zip \
             dist/SHA256SUMS.txt \
             --title "Pomoc Rolas 1.1.1" \
-            --notes "Dodano opcjonalny stały dostęp: usługę uruchamianą z Windows, zachowanie tego samego ID po restarcie oraz ikonę obok zegara. Wydanie oczekuje na podpis SignPath Foundation."
+            --notes $'Dodano opcjonalny stały dostęp: usługę uruchamianą z Windows, zachowanie tego samego ID po restarcie oraz ikonę obok zegara.\n\n## Code signing policy\n\nFree code signing provided by [SignPath.io](https://signpath.io/), certificate by [SignPath Foundation](https://signpath.org/).\n\nSzczegóły ról i prywatności opisano w [README](https://github.com/rolaselectronics/pomoc-rolas#code-signing-policy). Wydanie oczekuje na akceptację i podpis SignPath Foundation.'
