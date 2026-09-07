@@ -43,6 +43,17 @@ identyfikator sesji. Jednorazowy dostęp trwa do zamknięcia programu. Stały do
 jest włączany i usuwany wyłącznie przez jawne działania wymagające uprawnień
 administratora. Zasady zgłaszania problemów opisuje plik `SECURITY.md`.
 
+## Code signing policy
+
+Free code signing provided by [SignPath.io](https://signpath.io/), certificate by
+[SignPath Foundation](https://signpath.org/).
+
+- Committer and reviewer: [Michał Rdzonek (@rolaselectronics)](https://github.com/rolaselectronics)
+- Approver: [Michał Rdzonek (@rolaselectronics)](https://github.com/rolaselectronics)
+- Privacy: program nie wysyła telemetrii. Łączy się wyłącznie ze wskazanym
+  repeaterem `servis.rolas.com.pl`, gdy użytkownik uruchomi sesję pomocy albo
+  świadomie włączy stały dostęp.
+
 ## Licencja
 
 Cały projekt jest udostępniany na licencji GPL-3.0-or-later. Informacje o
