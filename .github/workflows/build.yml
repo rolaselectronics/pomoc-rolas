@@ -15,6 +15,6 @@ jobs:
       - name: Build verification binary
         env:
           ROLAS_ACCESS_PASSWORD: test1234
-        run: ./build.sh
+        run: bash ./build.sh
       - name: Verify that the production secret is absent
         run: test ! -e src/build_secrets.h
