@@ -12,6 +12,43 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: mlugg/setup-zig@v2
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mlugg/setup-zig@v2
+        with:
+          version: 0.14.1
+      - name: Build production binary
+        env:
+          ROLAS_ACCESS_PASSWORD: ${{ secrets.ROLAS_ACCESS_PASSWORD }}
+        run: bash ./build.sh
+      - name: Build release package
+        run: |
+          mkdir package
+          cp dist/Pomoc-Rolas-1.1.1.exe package/
+          cp dist/SHA256SUMS.txt LICENSE-GPL-3.0.txt README.md THIRD_PARTY_NOTICES.txt package/
+          cd package
+          zip -9 ../Pomoc-Rolas-1.1.1.zip ./*
+      - name: Publish unsigned release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.1.1 \
+            dist/Pomoc-Rolas-1.1.1.exe \
+            Pomoc-Rolas-1.1.1.zip \
+            dist/SHA256SUMS.txt \
+            --title "Pomoc Rolas 1.1.1" \
+            --notes "Dodano opcjonalny stały dostęp: usługę uruchamianą z Windows, zachowanie tego samego ID po restarcie oraz ikonę obok zegara. Wydanie oczekuje na podpis SignPath Foundation."
         with:
           version: 0.14.1
       - name: Build production binary
