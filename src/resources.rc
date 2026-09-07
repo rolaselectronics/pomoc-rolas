@@ -28,8 +28,8 @@ IDB_LOGO BITMAP "../assets/logo-original.bmp"
 1 RT_MANIFEST "app.manifest"
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,6,0
- PRODUCTVERSION 1,0,6,0
+ FILEVERSION 1,1,1,0
+ PRODUCTVERSION 1,1,1,0
  FILEFLAGSMASK 0x3fL
  FILEFLAGS 0x0L
  FILEOS 0x40004L
@@ -42,12 +42,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Rolas Electronics Michal Rdzonek\0"
             VALUE "FileDescription", "Pomoc Rolas - bezpieczna pomoc zdalna\0"
-            VALUE "FileVersion", "1.0.6\0"
+            VALUE "FileVersion", "1.1.1\0"
             VALUE "InternalName", "PomocRolas\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 Rolas Electronics\0"
             VALUE "OriginalFilename", "Pomoc-Rolas.exe\0"
             VALUE "ProductName", "Pomoc Rolas\0"
-            VALUE "ProductVersion", "1.0.6\0"
+            VALUE "ProductVersion", "1.1.1\0"
         END
     END
     BLOCK "VarFileInfo"
