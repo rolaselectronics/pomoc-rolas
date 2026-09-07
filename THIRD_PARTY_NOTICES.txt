@@ -1,0 +1,17 @@
+Pomoc Rolas zawiera niezmodyfikowane pliki binarne projektu UltraVNC 1.8.2.4:
+
+- winvnc.exe (x86 i x64)
+- vnchooks.dll (x86 i x64)
+- ddengine.dll / ddengine64.dll
+- SecureVNCPlugin.dsm / SecureVNCPlugin64.dsm
+
+UltraVNC jest wolnym oprogramowaniem na licencji GNU General Public License,
+wersja 3 lub nowsza.
+
+Projekt: https://uvnc.com/
+Kod źródłowy: https://github.com/ultravnc/ultravnc/tree/14a15e83f1e3d1a07ee9186882d8f7c643605446
+Wydanie użyte w tej paczce: UltraVNC 1.8.2.4 (czerwiec 2026)
+Oficjalna paczka binarna SHA-256:
+8af948089626008f02edd1254afc15c814e454ec5fc9e3eaa860356f19d4f113
+
+Pełny tekst licencji GPL-3.0 znajduje się w pliku LICENSE-GPL-3.0.txt.
