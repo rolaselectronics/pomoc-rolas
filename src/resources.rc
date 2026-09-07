@@ -1,0 +1,57 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#include <windows.h>
+
+#define IDR_WINVNC_X64 101
+#define IDR_HOOKS_X64 102
+#define IDR_DD_X64 103
+#define IDR_DSM_X64 104
+#define IDR_WINVNC_X86 111
+#define IDR_HOOKS_X86 112
+#define IDR_DD_X86 113
+#define IDR_DSM_X86 114
+#define IDI_APP 201
+#define IDB_LOGO 202
+
+IDR_WINVNC_X64 RCDATA "../payload/x64/winvnc.exe"
+IDR_HOOKS_X64  RCDATA "../payload/x64/vnchooks.dll"
+IDR_DD_X64     RCDATA "../payload/x64/ddengine64.dll"
+IDR_DSM_X64    RCDATA "../payload/x64/SecureVNCPlugin64.dsm"
+IDR_WINVNC_X86 RCDATA "../payload/x86/winvnc.exe"
+IDR_HOOKS_X86  RCDATA "../payload/x86/vnchooks.dll"
+IDR_DD_X86     RCDATA "../payload/x86/ddengine.dll"
+IDR_DSM_X86    RCDATA "../payload/x86/SecureVNCPlugin.dsm"
+
+IDI_APP ICON "../assets/rolas.ico"
+IDB_LOGO BITMAP "../assets/logo-original.bmp"
+
+1 RT_MANIFEST "app.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,6,0
+ PRODUCTVERSION 1,0,6,0
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041504B0"
+        BEGIN
+            VALUE "CompanyName", "Rolas Electronics Michal Rdzonek\0"
+            VALUE "FileDescription", "Pomoc Rolas - bezpieczna pomoc zdalna\0"
+            VALUE "FileVersion", "1.0.6\0"
+            VALUE "InternalName", "PomocRolas\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Rolas Electronics\0"
+            VALUE "OriginalFilename", "Pomoc-Rolas.exe\0"
+            VALUE "ProductName", "Pomoc Rolas\0"
+            VALUE "ProductVersion", "1.0.6\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0415, 1200
+    END
+END
