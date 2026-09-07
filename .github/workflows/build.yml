@@ -1,0 +1,20 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mlugg/setup-zig@v2
+        with:
+          version: 0.14.1
+      - name: Build verification binary
+        env:
+          ROLAS_ACCESS_PASSWORD: test1234
+        run: ./build.sh
+      - name: Verify that the production secret is absent
+        run: test ! -e src/build_secrets.h
