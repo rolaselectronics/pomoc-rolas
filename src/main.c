@@ -9,8 +9,6 @@
 #include "build_secrets.h"
 
 #define APP_TITLE L"Rolas Electronics Zdalna Pomoc"
-#define REPEATER_HOST L"servis.rolas.com.pl"
-#define REPEATER_PORT 5500
 #define SERVICE_NAME L"uvnc_service"
 #define PRODUCT_KEY L"Software\\Rolas Electronics\\Pomoc Rolas"
 #define RUN_KEY L"Software\\Microsoft\\Windows\\CurrentVersion\\Run"
@@ -78,7 +76,8 @@ static BOOL write_ultravnc_ini(const WCHAR *dir,BOOL persistent,const WCHAR *id)
     if(persistent){
         char id8[16];WideCharToMultiByte(CP_ACP,0,id,-1,id8,sizeof(id8),NULL,NULL);
         snprintf(service,sizeof(service),
-          "service_commandline=-autoreconnect ID:%s -connect servis.rolas.com.pl::5500\r\n",id8);
+          "service_commandline=-autoreconnect ID:%s -connect %s::%d\r\n",
+          id8,ROLAS_REPEATER_HOST_A,ROLAS_REPEATER_PORT);
     }
     char ini[3072];
     int n=snprintf(ini,sizeof(ini),
@@ -133,7 +132,7 @@ static BOOL start_support(void) {
     WCHAR server[MAX_PATH];if(!generate_id()||!prepare_payload(server))return FALSE;
     WCHAR ini[MAX_PATH],cmd[1024];path_join(ini,g_session_dir,L"ultravnc.ini");
     wsprintfW(cmd,L"\"%s\" -config \"%s\" -multi -autoreconnect id:%s -connect %s::%d -run",
-      server,ini,g_id,REPEATER_HOST,REPEATER_PORT);
+      server,ini,g_id,ROLAS_REPEATER_HOST_W,ROLAS_REPEATER_PORT);
     STARTUPINFOW si={sizeof(si)};PROCESS_INFORMATION pi={0};
     g_job=CreateJobObjectW(NULL,NULL);
     if(g_job){JOBOBJECT_EXTENDED_LIMIT_INFORMATION lim={0};
