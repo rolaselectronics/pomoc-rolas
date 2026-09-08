@@ -17,6 +17,8 @@ jobs:
       - name: Build production binary
         env:
           ROLAS_ACCESS_PASSWORD: ${{ secrets.ROLAS_ACCESS_PASSWORD }}
+          ROLAS_REPEATER_HOST: ${{ secrets.ROLAS_REPEATER_HOST }}
+          ROLAS_REPEATER_PORT: ${{ secrets.ROLAS_REPEATER_PORT }}
         run: bash ./build.sh
       - name: Build release package
         run: |
