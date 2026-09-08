@@ -2,7 +2,7 @@
 
 Jednoplikowy klient pomocy zdalnej dla Rolas Electronics. Program pokazuje
 losowy sześciocyfrowy identyfikator i zestawia wychodzące połączenie z
-repeaterem UltraVNC Mode II pod adresem `servis.rolas.com.pl:5500`.
+repeaterem UltraVNC Mode II wskazanym podczas budowania programu.
 
 ## Właściwości
 
@@ -29,12 +29,17 @@ Wymagane są Zig oraz OpenSSL. Prawdziwego hasła nie ma w repozytorium.
 Podaje się je wyłącznie na czas budowania:
 
 ```bash
-ROLAS_ACCESS_PASSWORD='TU_WPISZ_HASLO' ./build.sh
+ROLAS_ACCESS_PASSWORD='TU_WPISZ_HASLO' \
+ROLAS_REPEATER_HOST='TU_WPISZ_ADRES_REPETERA' \
+ROLAS_REPEATER_PORT='TU_WPISZ_PORT_REPETERA' \
+./build.sh
 ```
 
-Hasło może mieć od 1 do 8 znaków ASCII. Skrypt tworzy tymczasowy nagłówek,
-buduje `dist/Pomoc-Rolas-1.1.1.exe`, a następnie usuwa nagłówek. W GitHub
-Actions hasło jest pobierane z tajnego ustawienia `ROLAS_ACCESS_PASSWORD`.
+Hasło może mieć od 1 do 8 znaków ASCII. Adres i port repetera również nie są
+zapisane w publicznym kodzie. Skrypt tworzy tymczasowy nagłówek, buduje
+`dist/Pomoc-Rolas-1.1.1.exe`, a następnie usuwa nagłówek. W GitHub Actions
+wartości produkcyjne są pobierane z tajnych ustawień `ROLAS_ACCESS_PASSWORD`,
+`ROLAS_REPEATER_HOST` i `ROLAS_REPEATER_PORT`.
 
 ## Bezpieczeństwo
 
@@ -50,8 +55,8 @@ Free code signing provided by [SignPath.io](https://signpath.io/), certificate b
 
 - Committer and reviewer: [Michał Rdzonek (@rolaselectronics)](https://github.com/rolaselectronics)
 - Approver: [Michał Rdzonek (@rolaselectronics)](https://github.com/rolaselectronics)
-- Privacy: program nie wysyła telemetrii. Łączy się wyłącznie ze wskazanym
-  repeaterem `servis.rolas.com.pl`, gdy użytkownik uruchomi sesję pomocy albo
+- Privacy: program nie wysyła telemetrii. Łączy się wyłącznie z repeaterem
+  wskazanym podczas budowania, gdy użytkownik uruchomi sesję pomocy albo
   świadomie włączy stały dostęp.
 
 ## Licencja

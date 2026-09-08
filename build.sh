@@ -5,6 +5,8 @@ project_dir="$(cd "$(dirname "$0")" && pwd)"
 out="$project_dir/dist"
 generated_header="$project_dir/src/build_secrets.h"
 password="${ROLAS_ACCESS_PASSWORD:-TU_WPISZ_HASLO}"
+repeater_host="${ROLAS_REPEATER_HOST:-TU_WPISZ_ADRES_REPETERA}"
+repeater_port="${ROLAS_REPEATER_PORT:-TU_WPISZ_PORT_REPETERA}"
 
 if [[ "$password" == "TU_WPISZ_HASLO" ]]; then
   echo "Ustaw ROLAS_ACCESS_PASSWORD przed budowaniem wersji produkcyjnej." >&2
@@ -12,6 +14,18 @@ if [[ "$password" == "TU_WPISZ_HASLO" ]]; then
 fi
 if [[ ! "$password" =~ ^[A-Za-z0-9._@%+=!-]{1,8}$ ]]; then
   echo "Haslo musi miec od 1 do 8 znakow ASCII: litery, cyfry lub ._@%+=!-" >&2
+  exit 2
+fi
+if [[ "$repeater_host" == "TU_WPISZ_ADRES_REPETERA" ]]; then
+  echo "Ustaw ROLAS_REPEATER_HOST przed budowaniem wersji produkcyjnej." >&2
+  exit 2
+fi
+if [[ ! "$repeater_host" =~ ^[A-Za-z0-9.-]{1,253}$ ]]; then
+  echo "Adres repetera moze zawierac tylko litery, cyfry, kropki i myslniki." >&2
+  exit 2
+fi
+if [[ ! "$repeater_port" =~ ^[0-9]{1,5}$ ]] || ((repeater_port < 1 || repeater_port > 65535)); then
+  echo "Port repetera musi byc liczba od 1 do 65535." >&2
   exit 2
 fi
 
@@ -38,6 +52,9 @@ trap cleanup EXIT
 
 printf '#define ROLAS_SECUREVNC_PASSPHRASE_B64 "%s"\n' "$securevnc_b64" > "$generated_header"
 printf '#define ROLAS_UVNC_PASSWORD_HEX "%s"\n' "$uvnc_hex" >> "$generated_header"
+printf '#define ROLAS_REPEATER_HOST_A "%s"\n' "$repeater_host" >> "$generated_header"
+printf '#define ROLAS_REPEATER_HOST_W L"%s"\n' "$repeater_host" >> "$generated_header"
+printf '#define ROLAS_REPEATER_PORT %s\n' "$repeater_port" >> "$generated_header"
 
 mkdir -p "$out"
 cd "$project_dir/src"
